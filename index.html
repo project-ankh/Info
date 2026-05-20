@@ -2,227 +2,510 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ANKH ☥ | Sacred Guidance</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
 body{
-background:linear-gradient(180deg,#fffef9,#f9f0d2,#fffdf7);
 font-family:'Libre Baskerville',serif;
-color:#8f6a00;
+background:
+radial-gradient(circle at top,#2a1c00 0%,#0c0c0c 35%,#050505 100%);
+color:#f6deb0;
 overflow-x:hidden;
-position:relative;
 }
 
-/* FLOATING ETHEREAL ELEMENTS */
-.float{
+/* GOLD PARTICLES */
+.bg{
 position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+overflow:hidden;
+z-index:-1;
 pointer-events:none;
-z-index:0;
-opacity:.6;
-animation:floatUp linear infinite;
 }
 
-@keyframes floatUp{
-0%{transform:translateY(110vh) rotate(0deg)}
-100%{transform:translateY(-120vh) rotate(360deg)}
+.spark{
+position:absolute;
+font-size:2rem;
+opacity:.18;
+animation:float linear infinite;
 }
 
-.star{
+@keyframes float{
+0%{
+transform:translateY(110vh) rotate(0deg);
+opacity:0;
+}
+20%{opacity:.25;}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* NAVBAR */
+nav{
 position:fixed;
-font-size:1rem;
-animation:shoot 8s linear infinite;
-opacity:.25;
-z-index:0;
+top:0;
+width:100%;
+z-index:9999;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(14px);
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:12px;
+padding:18px;
+border-bottom:1px solid rgba(212,175,55,.25);
 }
 
-@keyframes shoot{
-0%{transform:translate(-10vw,-10vh)}
-100%{transform:translate(120vw,120vh)}
+nav a{
+text-decoration:none;
+color:#e7c770;
+font-weight:bold;
+padding:12px 18px;
+border-radius:40px;
+transition:.3s;
+background:rgba(212,175,55,.08);
+border:1px solid rgba(212,175,55,.18);
 }
 
+nav a:hover{
+transform:translateY(-3px);
+box-shadow:0 0 18px rgba(212,175,55,.3);
+}
+
+/* HERO */
 header{
-min-height:90vh;
+min-height:100vh;
 display:flex;
 flex-direction:column;
-align-items:center;
 justify-content:center;
+align-items:center;
 text-align:center;
-padding:30px;
+padding:40px 20px;
 position:relative;
 z-index:2;
 }
 
 .logo{
-font-size:5rem;
-animation:glow 2s infinite alternate;
+font-size:6rem;
+color:#d4af37;
+text-shadow:0 0 20px rgba(212,175,55,.4);
+animation:pulse 2.5s infinite alternate;
+}
+
+@keyframes pulse{
+from{
+transform:scale(1);
+text-shadow:0 0 10px rgba(212,175,55,.3);
+}
+to{
+transform:scale(1.08);
+text-shadow:0 0 35px rgba(212,175,55,.8);
+}
 }
 
 h1{
 font-family:'Cinzel',serif;
-font-size:4.5rem;
+font-size:clamp(3rem,8vw,6rem);
+letter-spacing:10px;
 color:#d4af37;
-letter-spacing:5px;
+margin-top:10px;
 }
 
 .subtitle{
-max-width:780px;
+max-width:900px;
 line-height:2;
+margin-top:25px;
 font-size:1.05rem;
-margin-top:20px;
+color:#f2dfb0;
 }
 
-.section-title{
-text-align:center;
-font-family:'Cinzel',serif;
-font-size:2.3rem;
-color:#d4af37;
-padding:40px 20px 20px;
-}
-
-.services{
+.btn-wrap{
 display:flex;
 flex-wrap:wrap;
-gap:28px;
+gap:15px;
 justify-content:center;
-padding:20px;
+margin-top:30px;
+}
+
+.btn{
+text-decoration:none;
+padding:16px 28px;
+border-radius:18px;
+font-weight:bold;
+color:#111;
+background:linear-gradient(45deg,#d4af37,#ffe8a1);
+box-shadow:0 0 25px rgba(212,175,55,.3);
+transition:.3s;
 position:relative;
-z-index:2;
+z-index:999;
+}
+
+.btn:hover{
+transform:translateY(-5px) scale(1.04);
+}
+
+/* SECTION */
+.section-title{
+font-family:'Cinzel',serif;
+font-size:2.8rem;
+text-align:center;
+padding:60px 20px 20px;
+color:#d4af37;
+}
+
+.text{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:2;
+padding:0 20px 30px;
+color:#e8d4a4;
+}
+
+/* CARDS */
+.services,
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+max-width:1250px;
+margin:auto;
+padding:20px;
 }
 
 .card{
-width:330px;
-padding:30px;
-background:rgba(255,255,255,.72);
-backdrop-filter:blur(14px);
-border:2px solid rgba(212,175,55,.4);
+background:rgba(255,215,0,.04);
+border:1px solid rgba(212,175,55,.22);
 border-radius:35px;
-box-shadow:0 0 40px rgba(212,175,55,.15);
-transition:.4s;
+padding:30px;
 text-align:center;
+backdrop-filter:blur(10px);
+transition:.4s;
+box-shadow:0 0 25px rgba(212,175,55,.08);
 }
-.card:hover{transform:translateY(-10px) scale(1.03)}
-.card h2{font-family:'Cinzel',serif}
-.price{font-size:1.5rem;font-weight:bold;margin:12px 0;color:#9d7600}
-.desc{line-height:1.9;margin-top:10px}
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:14px 25px;
-border-radius:20px;
-background:linear-gradient(45deg,#d4af37,#fff2bf);
-text-decoration:none;
-color:#6d5300;
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 40px rgba(212,175,55,.18);
+}
+
+.card h2{
+font-family:'Cinzel',serif;
+margin-bottom:14px;
+color:#e9c86a;
+}
+
+.price{
+font-size:1.5rem;
 font-weight:bold;
-box-shadow:0 0 20px rgba(212,175,55,.35);
-transition:.3s;
+margin:12px 0;
+color:#ffd76b;
 }
-.btn:hover{transform:scale(1.07)}
 
+.desc{
+line-height:1.9;
+color:#ebddb9;
+}
+
+/* REVIEWS */
 .review-slider{
 display:flex;
 overflow-x:auto;
 gap:25px;
-padding:20px;
-scroll-snap-type:x mandatory;
+padding:25px;
 scrollbar-width:none;
+scroll-snap-type:x mandatory;
 }
+
 .review-card{
 min-width:330px;
 scroll-snap-align:center;
 }
 
-.contact{text-align:center;padding:60px 20px;position:relative;z-index:2}
-footer{text-align:center;padding:40px;line-height:2;position:relative;z-index:2}
+/* CONTACT */
+.contact{
+text-align:center;
+padding:70px 20px;
+}
 
-@keyframes glow{
-from{text-shadow:0 0 10px rgba(212,175,55,.3)}
-to{text-shadow:0 0 35px rgba(212,175,55,.9)}
+.contact p{
+margin:12px 0;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:50px 20px;
+border-top:1px solid rgba(212,175,55,.15);
+line-height:2;
+color:#c7af77;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+nav{
+gap:8px;
+padding:12px;
+}
+
+nav a{
+padding:10px 12px;
+font-size:.9rem;
+}
+
+.logo{
+font-size:4.5rem;
+}
+
+.section-title{
+font-size:2rem;
+}
 }
 </style>
 </head>
+
 <body>
 
-<!-- Floating Chibi Isis + Symbols -->
-<div class="float" style="left:5%;font-size:3rem;animation-duration:18s">👸✨</div>
-<div class="float" style="left:20%;font-size:2rem;animation-duration:16s">☥</div>
-<div class="float" style="left:35%;font-size:2.5rem;animation-duration:20s">🙏</div>
-<div class="float" style="left:50%;font-size:3rem;animation-duration:17s">👸🪽</div>
-<div class="float" style="left:65%;font-size:2rem;animation-duration:15s">𓂀</div>
-<div class="float" style="left:80%;font-size:3rem;animation-duration:19s">👸✨</div>
-<div class="star" style="top:10%;left:10%">✦</div>
-<div class="star" style="top:30%;left:50%">✧</div>
+<div class="bg">
+<div class="spark" style="left:5%;animation-duration:18s;">☥</div>
+<div class="spark" style="left:20%;animation-duration:15s;">✨</div>
+<div class="spark" style="left:35%;animation-duration:22s;">𓂀</div>
+<div class="spark" style="left:50%;animation-duration:17s;">☥</div>
+<div class="spark" style="left:70%;animation-duration:19s;">✨</div>
+<div class="spark" style="left:88%;animation-duration:20s;">👁️</div>
+</div>
+
+<nav>
+<a href="#services">Services</a>
+<a href="#experience">Experience</a>
+<a href="#healing">Healing</a>
+<a href="#reviews">Reviews</a>
+<a href="#faq">FAQ</a>
+<a href="#contact">Contact</a>
+</nav>
 
 <header>
+
 <div class="logo">☥</div>
+
 <h1>ANKH</h1>
+
 <p class="subtitle">
-An Egyptian-inspired sanctuary for tarot, pendulum divination, sacred healing, intuition, and divine wisdom. Step into a space of spiritual clarity, mystical guidance, and energetic harmony.
+Step into a sacred Egyptian-inspired sanctuary of tarot, pendulum divination, sound healing, intuition, symbolic reflection, and spiritual guidance. A place of golden wisdom, divine mystery, and soul clarity.
 </p>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">Message Us @ankhradha ✨</a>
+
+<div class="btn-wrap">
+<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
+Message @ankhradha ✨
+</a>
+
+<a href="#services" class="btn">
+Explore Services ☥
+</a>
+</div>
+
 </header>
 
-<h2 class="section-title">Sacred Services</h2>
+<h2 id="services" class="section-title">
+☥ Sacred Services
+</h2>
+
+<p class="text">
+Explore spiritual guidance, sacred reflection, healing experiences, and intuitive sessions designed for emotional clarity and inner peace.
+</p>
+
 <section class="services">
+
 <div class="card">
-<h2>🔮 Pendulum Services</h2>
+<h2>🔮 Pendulum Guidance</h2>
 <div class="price">₹111</div>
-<p class="desc">Receive intuitive yes/no guidance, clarity, and energetic direction through sacred pendulum divination.</p>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">Book Now</a>
+<p class="desc">
+Symbolic yes/no guidance and spiritual reflection for crossroads and uncertainty.
+</p>
+<br>
+<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
+Book Now
+</a>
 </div>
 
 <div class="card">
-<h2>🃏 Tarot Card Reading</h2>
+<h2>🃏 Tarot Reading</h2>
 <div class="price">₹200</div>
-<p class="desc">Gain insight into love, future possibilities, emotions, and spiritual guidance through personalized tarot readings.</p>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">Book Now</a>
+<p class="desc">
+Insightful tarot guidance for relationships, emotions, career, and spiritual growth.
+</p>
+<br>
+<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
+Book Now
+</a>
 </div>
 
 <div class="card">
-<h2>🕊️ Sound & Energy Healing</h2>
+<h2>🕊️ Sound Healing</h2>
 <div class="price">₹500</div>
-<p class="desc">Healing through sound bowl vibrations, energy work, and sacred mantras for peace and alignment.</p>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">Book Now</a>
+<p class="desc">
+Relaxing sound bowl sessions for grounding, peace, and energetic calm.
+</p>
+<br>
+<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
+Book Now
+</a>
 </div>
+
+<div class="card">
+<h2>💘 Love Guidance</h2>
+<div class="price">₹250</div>
+<p class="desc">
+Reflective relationship guidance, emotional insight, and self-love clarity.
+</p>
+<br>
+<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
+Book Now
+</a>
+</div>
+
 </section>
 
-<h2 class="section-title">Sacred Reviews ✨</h2>
-<section style="padding-bottom:50px;position:relative;z-index:2;">
-<div class="review-slider">
+<h2 id="experience" class="section-title">
+✨ The ANKH Experience
+</h2>
+
+<p class="text">
+A luxury spiritual sanctuary inspired by Egyptian sacred symbolism, gold aesthetics, divine intuition, mystery, and peaceful energy.
+</p>
+
+<h2 id="healing" class="section-title">
+🕊️ Healing Philosophy
+</h2>
+
+<section class="grid">
+
+<div class="card">
+<h2>☥ Intuition</h2>
+<p class="desc">
+Trust inner wisdom through symbolic reflection.
+</p>
+</div>
+
+<div class="card">
+<h2>✨ Clarity</h2>
+<p class="desc">
+Find calm through meaningful spiritual discussion.
+</p>
+</div>
+
+<div class="card">
+<h2>🌙 Reflection</h2>
+<p class="desc">
+Pause, heal, and reconnect with yourself.
+</p>
+</div>
+
+</section>
+
+<h2 id="reviews" class="section-title">
+✨ Sacred Reviews
+</h2>
+
+<section class="review-slider">
 
 <div class="card review-card">
 <h2>⭐ Spiritual Guidance</h2>
-<p class="desc">“I appreciate the guidance shared, especially about being mindful in spiritual choices. The reader gave thoughtful advice about not choosing blindly, which I appreciated.”</p>
-<p><b>— Aman Singh</b></p>
+<p class="desc">
+“The guidance gave me emotional clarity and peace.”
+</p>
+<br>
+<b>— Aman Singh</b>
 </div>
 
 <div class="card review-card">
 <h2>⭐ Tarot Reading</h2>
-<p class="desc">“The reading was incredibly accurate, it helped with my complex personal situation. Mohit explained the cards thoroughly like a story — incredible to even experience divination!”</p>
-<p><b>— Pratham Rakhecha</b></p>
+<p class="desc">
+“Deeply meaningful and beautifully explained.”
+</p>
+<br>
+<b>— Pratham Rakhecha</b>
 </div>
 
 <div class="card review-card">
 <h2>⭐ Love Guidance</h2>
-<p class="desc">“I am so happy! You gave me the right reading and explained with such simplicity. Thanks for guiding me on my path of love!”</p>
-<p><b>— Yerik Abrol</b></p>
+<p class="desc">
+“Comforting and reflective experience.”
+</p>
+<br>
+<b>— Yerik Abrol</b>
 </div>
 
-</div>
-<p style="text-align:center;margin-top:10px;">← Swipe Reviews →</p>
 </section>
 
-<section class="contact">
-<h2 class="section-title">Contact ANKH</h2>
+<h2 id="faq" class="section-title">
+❓ Sacred FAQ
+</h2>
+
+<section class="grid">
+
+<div class="card">
+<h2>📩 How do I book?</h2>
+<p class="desc">
+All buttons redirect to Instagram @ankhradha.
+</p>
+</div>
+
+<div class="card">
+<h2>🔮 What is included?</h2>
+<p class="desc">
+Tarot, symbolic guidance, dreams, reflection, and spiritual conversations.
+</p>
+</div>
+
+<div class="card">
+<h2>✨ Guaranteed outcomes?</h2>
+<p class="desc">
+No. Sessions are intended for reflection and guidance only.
+</p>
+</div>
+
+</section>
+
+<section id="contact" class="contact">
+
+<h2 class="section-title">
+Contact ANKH
+</h2>
+
 <p>📧 work.emailm13@gmail.com</p>
 <p>📷 @ankhradha</p>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">Message on Instagram</a>
+
+<br>
+
+<a href="https://instagram.com/ankhradha"
+class="btn"
+target="_blank">
+Message on Instagram ☥
+</a>
+
 </section>
 
 <footer>
-☥ ANKH • Sacred Guidance • Divine Energy ☥
+☥ ANKH • Sacred Guidance • Egyptian Serenity • Divine Reflection ☥
+<br>
+Sessions are intended for spiritual reflection and guidance.
 </footer>
+
 </body>
 </html>
