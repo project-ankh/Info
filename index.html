@@ -1,511 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ANKH ☥ | Sacred Guidance</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KORE | Sacred Guidance</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-scroll-behavior:smooth;
-}
-
-body{
-font-family:'Libre Baskerville',serif;
-background:
-radial-gradient(circle at top,#2a1c00 0%,#0c0c0c 35%,#050505 100%);
-color:#f6deb0;
-overflow-x:hidden;
-}
-
-/* GOLD PARTICLES */
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-overflow:hidden;
-z-index:-1;
-pointer-events:none;
-}
-
-.spark{
-position:absolute;
-font-size:2rem;
-opacity:.18;
-animation:float linear infinite;
-}
-
-@keyframes float{
-0%{
-transform:translateY(110vh) rotate(0deg);
-opacity:0;
-}
-20%{opacity:.25;}
-100%{
-transform:translateY(-120vh) rotate(360deg);
-opacity:0;
-}
-}
-
-/* NAVBAR */
-nav{
-position:fixed;
-top:0;
-width:100%;
-z-index:9999;
-background:rgba(0,0,0,.65);
-backdrop-filter:blur(14px);
-display:flex;
-justify-content:center;
-flex-wrap:wrap;
-gap:12px;
-padding:18px;
-border-bottom:1px solid rgba(212,175,55,.25);
-}
-
-nav a{
-text-decoration:none;
-color:#e7c770;
-font-weight:bold;
-padding:12px 18px;
-border-radius:40px;
-transition:.3s;
-background:rgba(212,175,55,.08);
-border:1px solid rgba(212,175,55,.18);
-}
-
-nav a:hover{
-transform:translateY(-3px);
-box-shadow:0 0 18px rgba(212,175,55,.3);
-}
-
-/* HERO */
-header{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:40px 20px;
-position:relative;
-z-index:2;
-}
-
-.logo{
-font-size:6rem;
-color:#d4af37;
-text-shadow:0 0 20px rgba(212,175,55,.4);
-animation:pulse 2.5s infinite alternate;
-}
-
-@keyframes pulse{
-from{
-transform:scale(1);
-text-shadow:0 0 10px rgba(212,175,55,.3);
-}
-to{
-transform:scale(1.08);
-text-shadow:0 0 35px rgba(212,175,55,.8);
-}
-}
-
-h1{
-font-family:'Cinzel',serif;
-font-size:clamp(3rem,8vw,6rem);
-letter-spacing:10px;
-color:#d4af37;
-margin-top:10px;
-}
-
-.subtitle{
-max-width:900px;
-line-height:2;
-margin-top:25px;
-font-size:1.05rem;
-color:#f2dfb0;
-}
-
-.btn-wrap{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-justify-content:center;
-margin-top:30px;
-}
-
-.btn{
-text-decoration:none;
-padding:16px 28px;
-border-radius:18px;
-font-weight:bold;
-color:#111;
-background:linear-gradient(45deg,#d4af37,#ffe8a1);
-box-shadow:0 0 25px rgba(212,175,55,.3);
-transition:.3s;
-position:relative;
-z-index:999;
-}
-
-.btn:hover{
-transform:translateY(-5px) scale(1.04);
-}
-
-/* SECTION */
-.section-title{
-font-family:'Cinzel',serif;
-font-size:2.8rem;
-text-align:center;
-padding:60px 20px 20px;
-color:#d4af37;
-}
-
-.text{
-max-width:900px;
-margin:auto;
-text-align:center;
-line-height:2;
-padding:0 20px 30px;
-color:#e8d4a4;
-}
-
-/* CARDS */
-.services,
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-max-width:1250px;
-margin:auto;
-padding:20px;
-}
-
-.card{
-background:rgba(255,215,0,.04);
-border:1px solid rgba(212,175,55,.22);
-border-radius:35px;
-padding:30px;
-text-align:center;
-backdrop-filter:blur(10px);
-transition:.4s;
-box-shadow:0 0 25px rgba(212,175,55,.08);
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 40px rgba(212,175,55,.18);
-}
-
-.card h2{
-font-family:'Cinzel',serif;
-margin-bottom:14px;
-color:#e9c86a;
-}
-
-.price{
-font-size:1.5rem;
-font-weight:bold;
-margin:12px 0;
-color:#ffd76b;
-}
-
-.desc{
-line-height:1.9;
-color:#ebddb9;
-}
-
-/* REVIEWS */
-.review-slider{
-display:flex;
-overflow-x:auto;
-gap:25px;
-padding:25px;
-scrollbar-width:none;
-scroll-snap-type:x mandatory;
-}
-
-.review-card{
-min-width:330px;
-scroll-snap-align:center;
-}
-
-/* CONTACT */
-.contact{
-text-align:center;
-padding:70px 20px;
-}
-
-.contact p{
-margin:12px 0;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:50px 20px;
-border-top:1px solid rgba(212,175,55,.15);
-line-height:2;
-color:#c7af77;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-nav{
-gap:8px;
-padding:12px;
-}
-
-nav a{
-padding:10px 12px;
-font-size:.9rem;
-}
-
-.logo{
-font-size:4.5rem;
-}
-
-.section-title{
-font-size:2rem;
-}
-}
+*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#f4f1e8;color:#2f2a23;overflow-x:hidden}
+nav{position:fixed;top:0;width:100%;background:rgba(244,241,232,.95);padding:16px;display:flex;justify-content:center;gap:28px;border-bottom:1px solid #d9d1bf;z-index:999}
+nav a{text-decoration:none;color:#3b352d;font-weight:600}
+.hero{height:100vh;display:flex;justify-content:center;align-items:center;padding:20px;background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80');background-size:cover;background-position:center}
+.hero-box{background:rgba(255,255,255,.82);padding:50px 35px;border-radius:28px;max-width:850px;text-align:center;backdrop-filter:blur(8px);box-shadow:0 10px 35px rgba(0,0,0,.12)}
+h1,h2,h3{font-family:'Cinzel',serif}
+h1{font-size:4rem;margin-bottom:10px}.section{padding:90px 20px}
+.container{max-width:1000px;margin:auto;background:#fff;padding:40px;border-radius:24px;box-shadow:0 8px 25px rgba(0,0,0,.08)}
+.container h2{margin-bottom:18px;text-align:center}.container p{line-height:1.9;font-size:1.05rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:30px}
+.card{background:#faf8f3;padding:25px;border-radius:20px;border:1px solid #ddd5c4;text-align:center;transition:.3s}
+.card:hover{transform:translateY(-5px)}
+.btn,.music-btn{display:inline-block;margin-top:16px;padding:12px 20px;background:#3b352d;color:#fff;text-decoration:none;border-radius:999px;font-weight:600;border:none;cursor:pointer}
+.float{position:fixed;font-size:22px;pointer-events:none;animation:float 14s linear infinite;opacity:.5}
+@keyframes float{0%{transform:translateY(100vh)}100%{transform:translateY(-120vh)}}
+footer{padding:25px;text-align:center;background:#ebe6d8;margin-top:30px}
 </style>
 </head>
-
 <body>
-
-<div class="bg">
-<div class="spark" style="left:5%;animation-duration:18s;">☥</div>
-<div class="spark" style="left:20%;animation-duration:15s;">✨</div>
-<div class="spark" style="left:35%;animation-duration:22s;">𓂀</div>
-<div class="spark" style="left:50%;animation-duration:17s;">☥</div>
-<div class="spark" style="left:70%;animation-duration:19s;">✨</div>
-<div class="spark" style="left:88%;animation-duration:20s;">👁️</div>
-</div>
-
 <nav>
+<a href="#home">Home</a>
+<a href="#meaning">Meaning</a>
+<a href="#owner">Owner</a>
 <a href="#services">Services</a>
-<a href="#experience">Experience</a>
-<a href="#healing">Healing</a>
-<a href="#reviews">Reviews</a>
-<a href="#faq">FAQ</a>
-<a href="#contact">Contact</a>
+<a href="https://project-ankh.github.io/Spiritual/" target="_blank">Courses</a>
 </nav>
-
-<header>
-
-<div class="logo">☥</div>
-
-<h1>ANKH</h1>
-
-<p class="subtitle">
-Step into a sacred Egyptian-inspired sanctuary of tarot, pendulum divination, sound healing, intuition, symbolic reflection, and spiritual guidance. A place of golden wisdom, divine mystery, and soul clarity.
-</p>
-
-<div class="btn-wrap">
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
-Message @ankhradha ✨
-</a>
-
-<a href="#services" class="btn">
-Explore Services ☥
-</a>
+<section class="hero" id="home">
+<div class="hero-box">
+<h1>KORE</h1>
+<p>Sacred guidance, reflection and soulful wellness inspired by peace, symbolism and inner calm.</p>
+<button class="music-btn" onclick="toggleMusic()">🎵 Play Relaxing Music</button>
 </div>
-
-</header>
-
-<h2 id="services" class="section-title">
-☥ Sacred Services
-</h2>
-
-<p class="text">
-Explore spiritual guidance, sacred reflection, healing experiences, and intuitive sessions designed for emotional clarity and inner peace.
-</p>
-
-<section class="services">
-
-<div class="card">
-<h2>🔮 Pendulum Guidance</h2>
-<div class="price">₹111</div>
-<p class="desc">
-Symbolic yes/no guidance and spiritual reflection for crossroads and uncertainty.
-</p>
-<br>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
-Book Now
-</a>
-</div>
-
-<div class="card">
-<h2>🃏 Tarot Reading</h2>
-<div class="price">₹200</div>
-<p class="desc">
-Insightful tarot guidance for relationships, emotions, career, and spiritual growth.
-</p>
-<br>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
-Book Now
-</a>
-</div>
-
-<div class="card">
-<h2>🕊️ Sound Healing</h2>
-<div class="price">₹500</div>
-<p class="desc">
-Relaxing sound bowl sessions for grounding, peace, and energetic calm.
-</p>
-<br>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
-Book Now
-</a>
-</div>
-
-<div class="card">
-<h2>💘 Love Guidance</h2>
-<div class="price">₹250</div>
-<p class="desc">
-Reflective relationship guidance, emotional insight, and self-love clarity.
-</p>
-<br>
-<a href="https://instagram.com/ankhradha" class="btn" target="_blank">
-Book Now
-</a>
-</div>
-
 </section>
-
-<h2 id="experience" class="section-title">
-✨ The ANKH Experience
-</h2>
-
-<p class="text">
-A luxury spiritual sanctuary inspired by Egyptian sacred symbolism, gold aesthetics, divine intuition, mystery, and peaceful energy.
-</p>
-
-<h2 id="healing" class="section-title">
-🕊️ Healing Philosophy
-</h2>
-
-<section class="grid">
-
-<div class="card">
-<h2>☥ Intuition</h2>
-<p class="desc">
-Trust inner wisdom through symbolic reflection.
-</p>
+<section class="section" id="meaning">
+<div class="container">
+<h2>Meaning of Kore</h2>
+<p>The name <strong>Kore</strong> comes from ancient Greek and means <em>“maiden”</em> or <em>“pure young one.”</em> Historically linked with Persephone, Kore symbolises purity, renewal, nature, growth and transformation. In older traditions, the name was associated with springtime, cycles of rebirth and sacred symbolism connected to the natural world. Kore represents calmness, quiet strength, reflection and inner balance. This space is inspired by wellness, symbolism and peaceful guidance.</p>
 </div>
-
-<div class="card">
-<h2>✨ Clarity</h2>
-<p class="desc">
-Find calm through meaningful spiritual discussion.
-</p>
-</div>
-
-<div class="card">
-<h2>🌙 Reflection</h2>
-<p class="desc">
-Pause, heal, and reconnect with yourself.
-</p>
-</div>
-
 </section>
-
-<h2 id="reviews" class="section-title">
-✨ Sacred Reviews
-</h2>
-
-<section class="review-slider">
-
-<div class="card review-card">
-<h2>⭐ Spiritual Guidance</h2>
-<p class="desc">
-“The guidance gave me emotional clarity and peace.”
-</p>
-<br>
-<b>— Aman Singh</b>
+<section class="section" id="owner">
+<div class="container">
+<h2>About the Owner</h2>
+<p>Hi! I am the creator of Kore and I am a <strong>minor</strong>. This is a creative and wellness-inspired project built with care for symbolism, guidance and meaningful reflection.</p>
 </div>
-
-<div class="card review-card">
-<h2>⭐ Tarot Reading</h2>
-<p class="desc">
-“Deeply meaningful and beautifully explained.”
-</p>
-<br>
-<b>— Pratham Rakhecha</b>
-</div>
-
-<div class="card review-card">
-<h2>⭐ Love Guidance</h2>
-<p class="desc">
-“Comforting and reflective experience.”
-</p>
-<br>
-<b>— Yerik Abrol</b>
-</div>
-
 </section>
-
-<h2 id="faq" class="section-title">
-❓ Sacred FAQ
-</h2>
-
-<section class="grid">
-
-<div class="card">
-<h2>📩 How do I book?</h2>
-<p class="desc">
-All buttons redirect to Instagram @ankhradha.
-</p>
+<section class="section" id="services">
+<div class="container">
+<h2>Services</h2>
+<div class="cards">
+<div class="card"><h3>🔮 Tarot Card Readings</h3><p><strong>₹222</strong><br>In-depth tarot readings for guidance and reflection.</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
+<div class="card"><h3>🎶 Sound Healing</h3><p><strong>₹222</strong><br>Using sound bowl and various frequencies.</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
+<div class="card"><h3>✨ Custom Spell Making</h3><p><strong>₹500</strong><br>Offerings for love, finance and abundance. Not guaranteed and depends on faith and belief.</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
 </div>
-
-<div class="card">
-<h2>🔮 What is included?</h2>
-<p class="desc">
-Tarot, symbolic guidance, dreams, reflection, and spiritual conversations.
-</p>
 </div>
-
-<div class="card">
-<h2>✨ Guaranteed outcomes?</h2>
-<p class="desc">
-No. Sessions are intended for reflection and guidance only.
-</p>
-</div>
-
 </section>
-
-<section id="contact" class="contact">
-
-<h2 class="section-title">
-Contact ANKH
-</h2>
-
-<p>📧 work.emailm13@gmail.com</p>
-<p>📷 @ankhradha</p>
-
-<br>
-
-<a href="https://instagram.com/ankhradha"
-class="btn"
-target="_blank">
-Message on Instagram ☥
-</a>
-
-</section>
-
-<footer>
-☥ ANKH • Sacred Guidance • Egyptian Serenity • Divine Reflection ☥
-<br>
-Sessions are intended for spiritual reflection and guidance.
-</footer>
-
+<footer>KORE • Sacred Guidance</footer>
+<audio id="bgMusic" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8f2f5cb93.mp3?filename=meditation-relaxing-ambient-11157.mp3" type="audio/mpeg">
+</audio>
+<script>
+function toggleMusic(){
+const music=document.getElementById('bgMusic');
+if(music.paused){music.play();}else{music.pause();}
+}
+const emojis=['🍃','☀️','✨','🌾'];
+setInterval(function(){
+const e=document.createElement('div');
+e.className='float';
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+e.style.left=Math.random()*100+'vw';
+document.body.appendChild(e);
+setTimeout(function(){e.remove();},14000);
+},1800);
+</script>
 </body>
 </html>
