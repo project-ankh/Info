@@ -1,255 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>KORE | Sacred Guidance</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;scroll-behavior:smooth}
-:root{
---gold:#d4af37;
---silver:#d8d8d8;
---white:#ffffff;
---soft:#f9f8f4;
---text:#2b2b2b;
-}
-body{
-font-family:'Inter',sans-serif;
-background:linear-gradient(to bottom,#ffffff,#f8f8f6,#f3efe6);
-color:var(--text);
-overflow-x:hidden;
-}
-body::before{
-content:'';
-position:fixed;
-inset:0;
-pointer-events:none;
-background:radial-gradient(circle at top, rgba(212,175,55,.12), transparent 50%);
-z-index:-1;
-}
-nav{
-position:fixed;
-top:0;
-width:100%;
-display:flex;
-justify-content:center;
-gap:24px;
-padding:18px;
-backdrop-filter:blur(18px);
-background:rgba(255,255,255,.75);
-border-bottom:1px solid rgba(212,175,55,.25);
-z-index:999;
-box-shadow:0 4px 20px rgba(212,175,55,.12);
-}
-nav a{
-text-decoration:none;
-color:#6d5b22;
-font-weight:600;
-transition:.3s;
-position:relative;
-}
-nav a:hover{color:var(--gold);text-shadow:0 0 10px rgba(212,175,55,.6)}
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:url('https://images.unsplash.com/photo-1518562180175-34a163b1a9a6?q=80&w=1920&auto=format&fit=crop') center/cover;
-position:relative;
-}
-.hero::after{
-content:'';
-position:absolute;
-inset:0;
-background:rgba(255,255,255,.55);
-backdrop-filter:blur(3px);
-}
-.hero-box{
-position:relative;
-z-index:2;
-max-width:900px;
-text-align:center;
-padding:60px 40px;
-border-radius:35px;
-background:rgba(255,255,255,.65);
-backdrop-filter:blur(20px);
-border:1px solid rgba(212,175,55,.35);
-box-shadow:0 0 40px rgba(212,175,55,.15),0 0 80px rgba(255,255,255,.5);
-}
-h1,h2,h3{font-family:'Cinzel',serif}
-h1{
-font-size:5rem;
-color:#9d7a15;
-text-shadow:0 0 15px rgba(212,175,55,.45);
-margin-bottom:15px;
-}
-.hero p{font-size:1.1rem;line-height:1.8;max-width:650px;margin:auto}
-.section{padding:110px 20px}
-.container{
-max-width:1150px;
-margin:auto;
-padding:50px;
-background:rgba(255,255,255,.8);
-border-radius:35px;
-backdrop-filter:blur(18px);
-border:1px solid rgba(212,175,55,.25);
-box-shadow:0 15px 40px rgba(0,0,0,.08),0 0 25px rgba(212,175,55,.08);
-}
-h2{text-align:center;font-size:2.5rem;color:#8f6b00;margin-bottom:25px}
-p{line-height:1.9}
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-margin-top:35px;
-}
-.card{
-padding:30px;
-border-radius:30px;
-background:linear-gradient(145deg,rgba(255,255,255,.95),rgba(246,241,228,.9));
-border:1px solid rgba(212,175,55,.25);
-text-align:center;
-transition:.4s;
-position:relative;
-overflow:hidden;
-}
-.card:hover{
-transform:translateY(-12px) scale(1.02);
-box-shadow:0 15px 35px rgba(212,175,55,.2);
-}
-.card::before{
-content:'';
-position:absolute;
-inset:-100%;
-background:linear-gradient(120deg,transparent,rgba(212,175,55,.18),transparent);
-transition:1s;
-}
-.card:hover::before{inset:100%}
-.btn,.music-btn{
-display:inline-block;
-padding:14px 28px;
-border:none;
-border-radius:999px;
-font-weight:700;
-cursor:pointer;
-text-decoration:none;
-background:linear-gradient(135deg,var(--gold),#f0dd99);
-color:#fff;
-margin-top:18px;
-box-shadow:0 0 18px rgba(212,175,55,.4);
-transition:.3s;
-}
-.btn:hover,.music-btn:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(212,175,55,.6)}
-.review-wrapper{position:relative;overflow:hidden;margin-top:30px}
-.review-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px}
-.review-track::-webkit-scrollbar{display:none}
-.review-card{
-min-width:320px;
-scroll-snap-align:center;
-padding:28px;
-border-radius:30px;
-background:rgba(255,255,255,.85);
-border:1px solid rgba(212,175,55,.2);
-box-shadow:0 8px 25px rgba(0,0,0,.06);
-}
-.review-card h3{color:#a47b00;margin-bottom:12px}
-footer{
-text-align:center;
-padding:35px;
-background:linear-gradient(to right,#fff,#f7f3ea,#fff);
-margin-top:40px;
-border-top:1px solid rgba(212,175,55,.2);
-}
-.float{
-position:fixed;
-font-size:22px;
-pointer-events:none;
-animation:float 12s linear infinite;
-opacity:.6;
-}
-@keyframes float{
-0%{transform:translateY(100vh) rotate(0deg)}
-100%{transform:translateY(-120vh) rotate(360deg)}
-}
-@media(max-width:768px){
-h1{font-size:3rem}
-.hero-box,.container{padding:30px 22px}
-nav{gap:14px;font-size:.9rem;flex-wrap:wrap}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Spellwork Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold-primary: #C5A059;
+            --gold-light: #E8D3A7;
+            --gold-accent: #8C6D2D;
+            --bg-color: #FAF8F5;
+            --card-bg: #FFFFFF;
+            --text-main: #3B3835;
+            --text-subtle: #736E68;
+            --border-color: #E2D7C5;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+        }
+
+        /* Top Navigation Banner */
+        .top-banner {
+            background-color: #0F0F0F;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 14px 20px;
+            position: relative;
+        }
+
+        /* Crest Header Icon */
+        .crest-wrapper {
+            text-align: center;
+            margin-top: -12px;
+            margin-bottom: 20px;
+        }
+
+        .crest-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-color);
+            border: 1px solid var(--gold-primary);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-accent);
+            font-size: 0.9rem;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 10px 24px 60px 24px;
+        }
+
+        /* Section Titles & Subheadings */
+        .category-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold-accent);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .main-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--gold-primary);
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* What is Spellwork - Dedicated Card */
+        .about-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 40px 32px;
+            margin-bottom: 60px;
+            box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08);
+            position: relative;
+        }
+
+        .about-box::after {
+            content: "";
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            pointer-events: none;
+        }
+
+        .question-title {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .about-box p {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        .about-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-text {
+            font-style: italic;
+            color: var(--gold-accent);
+        }
+
+        /* Services List Section */
+        .services-section {
+            margin-bottom: 60px;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 16px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-title {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-size: 1.15rem;
+            color: var(--text-main);
+        }
+
+        .service-dots {
+            flex-grow: 1;
+            margin: 0 12px;
+            border-bottom: 1px dotted var(--border-color);
+        }
+
+        .service-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gold-accent);
+        }
+
+        .jar-note-box {
+            margin-top: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(232, 211, 167, 0.15) 0%, rgba(197, 160, 89, 0.05) 100%);
+            border: 1px solid var(--gold-light);
+            padding: 18px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--gold-accent);
+            font-size: 1.05rem;
+        }
+
+        /* Tabbed Text Reviews Section */
+        .reviews-section {
+            margin-top: 50px;
+        }
+
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-subtle);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            padding: 8px 16px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover, .tab-btn.active {
+            background-color: var(--gold-primary);
+            color: #FFFFFF;
+            border-color: var(--gold-primary);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px 24px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            text-align: center;
+            position: relative;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .review-text {
+            font-family: 'Playfair Display', 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.7;
+        }
+
+        .review-author {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold-accent);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--text-subtle);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px 16px 40px 16px;
+            }
+            .about-box {
+                padding: 28px 20px;
+            }
+            .tab-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<nav>
-<a href="#home">Home</a>
-<a href="#meaning">Meaning</a>
-<a href="#owner">Owner</a>
-<a href="#services">Services</a>
-<a href="#reviews">Reviews</a>
-<a href="https://project-ankh.github.io/Spiritual/" target="_blank">Courses</a>
-</nav>
-<section class="hero" id="home">
-<div class="hero-box">
-<h1>KORE</h1>
-<p>Sacred guidance, reflection and soulful wellness inspired by peace, symbolism and inner calm.</p>
-<button class="music-btn" onclick="toggleMusic()">🎵 Temple Ambience</button>
-</div>
-</section>
-<section class="section" id="meaning">
-<div class="container">
-<h2>Meaning of Kore</h2>
-<p>The name <strong>Kore</strong> comes from ancient Greek and means <em>“maiden”</em> or <em>“pure young one.”</em> Historically linked with Persephone, Kore symbolises purity, renewal, nature, growth and transformation. In older traditions, the name was associated with springtime, cycles of rebirth and sacred symbolism connected to the natural world. Kore represents calmness, quiet strength, reflection and inner balance. This space is inspired by wellness, symbolism and peaceful guidance.</p>
-</div>
-</section>
-<section class="section" id="owner">
-<div class="container">
-<h2>About the Owner</h2>
-<p>Hi! I am the creator of Kore and I am a <strong>minor</strong>. This is a creative and wellness-inspired project built with care for symbolism, guidance and meaningful reflection.</p>
-</div>
-</section>
-<section class="section" id="services">
-<div class="container">
-<h2>Temple Services</h2>
-<div class="cards">
-<div class="card"><h3>🔮 Tarot Card Readings</h3><p><strong>₹222</strong><br>In-depth tarot readings for guidance and reflection, You will also get Tarot Manifest techniques using the cards themselves.</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
-<div class="card"><h3>🎶 Sound Healing</h3><p><strong>₹222</strong><br>Using sound bowl and variety of frequencies, i will heal and elevate your energies. An audio will be given for your purpose of healing</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
-<div class="card"><h3>✨ Light Magic Healing</h3><p><strong>₹500</strong><br>Call upon angelic healings and beings of light to assist your higher truth (various purposes like Finance or Reconciliation) It also depends on beliefs and faiths</p><a class="btn" href="https://instagram.com/temple.kore" target="_blank">Instagram</a></div>
-</div>
-</div>
-</section>
-<section class="section" id="reviews">
-<div class="container">
-<h2>Sacred Reviews</h2>
-<p style="text-align:center;margin-bottom:25px">Swipe to view testimonials ✨</p>
-<div class="review-wrapper">
-<div class="review-track">
-<div class="review-card"><h3>Review 1</h3><p>Add your client review here...</p></div>
-<div class="review-card"><h3>Review 2</h3><p>Add your client review here...</p></div>
-<div class="review-card"><h3>Review 3</h3><p>Add your client review here...</p></div>
-<div class="review-card"><h3>Review 4</h3><p>Add your client review here...</p></div>
-</div>
-</div>
-</div>
-</section>
-<footer>KORE • Sacred Guidance ✨</footer>
-<audio id="bgMusic" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8f2f5cb93.mp3?filename=meditation-relaxing-ambient-11157.mp3" type="audio/mpeg">
-</audio>
-<script>
-function toggleMusic(){
-const music=document.getElementById('bgMusic');
-if(music.paused){music.play()}else{music.pause()}
-}
-const emojis=['✨','☥','🌙','🕊️','☀️'];
-setInterval(()=>{
-const e=document.createElement('div');
-e.className='float';
-e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-e.style.left=Math.random()*100+'vw';
-document.body.appendChild(e);
-setTimeout(()=>e.remove(),12000)
-},1400)
-</script>
+
+    <div class="top-banner">
+        2026 Sacred Healing | Magical Arts
+    </div>
+
+    <div class="crest-wrapper">
+        <div class="crest-icon">✦</div>
+    </div>
+
+    <div class="container">
+
+        <!-- What is Spellwork Card -->
+        <div class="about-box">
+            <div class="category-subtitle">Understanding The Practice</div>
+            <h2 class="question-title">What is Spellwork?</h2>
+            
+            <p>Spellwork is meant as a healing magickal practice that is used to release blockages. It is never guaranteed since it has many influencing factors like fate, karma, spiritual guides, etc.</p>
+            
+            <p>Spellwork needs a physical grasp to manifest. Doing nothing, not following instructions, or morally lying will result in me not giving you the service.</p>
+            
+            <p class="highlight-text">Please note: Spiritual services are not applicable for refund.</p>
+        </div>
+
+        <!-- Services Section -->
+        <div class="services-section">
+            <div class="category-subtitle">Offerings</div>
+            <h2 class="main-heading">My Services</h2>
+
+            <div class="service-item">
+                <span class="service-title">Love Spell</span>
+                <span class="service-dots"></span>
+                <span class="service-price">₹333</span>
+            </div>
+
+            <div class="service-item">
+                <span class="service-title">Finance Clearance Healing</span>
+                <span class="service-dots"></span>
+                <span class="service-price">₹555</span>
+            </div>
+
+            <div class="service-item">
+                <span class="service-title">Glamour Spell</span>
+                <span class="service-dots"></span>
+                <span class="service-price">₹333</span>
+            </div>
+
+            <div class="service-item">
+                <span class="service-title">Enchanting Spell</span>
+                <span class="service-dots"></span>
+                <span class="service-price">₹222</span>
+            </div>
+
+            <div class="service-item">
+                <span class="service-title">Protection / Nazar Banish Spell</span>
+                <span class="service-dots"></span>
+                <span class="service-price">₹333</span>
+            </div>
+
+            <div class="jar-note-box">
+                All spell jars are of cost ₹100–₹150 only
+            </div>
+        </div>
+
+        <!-- Text Tab Reviews Section -->
+        <div class="reviews-section">
+            <div class="category-subtitle">Client Words</div>
+            <h2 class="main-heading">Reviews</h2>
+
+            <!-- Tab Buttons -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="openTab(event, 'review1')">Review 1</button>
+                <button class="tab-btn" onclick="openTab(event, 'review2')">Review 2</button>
+                <button class="tab-btn" onclick="openTab(event, 'review3')">Review 3</button>
+                <button class="tab-btn" onclick="openTab(event, 'review4')">Review 4</button>
+                <button class="tab-btn" onclick="openTab(event, 'review5')">Review 5</button>
+                <button class="tab-btn" onclick="openTab(event, 'review6')">Review 6</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="review1" class="tab-content active">
+                <p class="review-text">"The Love Spell helped clear so much emotional baggage. I felt a difference within days. Eternally grateful!"</p>
+                <p class="review-author">— Ananya S.</p>
+            </div>
+
+            <div id="review2" class="tab-content">
+                <p class="review-text">"The Finance Clearance session felt like a weight off my shoulders. Things have started moving in the right direction."</p>
+                <p class="review-author">— Rahul M.</p>
+            </div>
+
+            <div id="review3" class="tab-content">
+                <p class="review-text">"My confidence boosted so much after the Glamour Spell! Everyone around me noticed the subtle change in energy."</p>
+                <p class="review-author">— Priya K.</p>
+            </div>
+
+            <div id="review4" class="tab-content">
+                <p class="review-text">"The Protection jar was carefully prepared and gave me an instant sense of peace in my space."</p>
+                <p class="review-author">— Sneha D.</p>
+            </div>
+
+            <div id="review5" class="tab-content">
+                <p class="review-text">"Followed all instructions closely and the results were incredible. Truly genuine spiritual guidance."</p>
+                <p class="review-author">— Aakash P.</p>
+            </div>
+
+            <div id="review6" class="tab-content">
+                <p class="review-text">"Pure intention and amazing energy. The Nazar Banish spell worked wonders for my household."</p>
+                <p class="review-author">— Simran R.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        ✦ Sacred Arts & Healing Services ✦
+    </footer>
+
+    <script>
+        function openTab(evt, reviewId) {
+            const contents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
+
+            const buttons = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove("active");
+            }
+
+            document.getElementById(reviewId).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+
 </body>
 </html>
