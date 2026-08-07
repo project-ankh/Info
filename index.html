@@ -75,6 +75,65 @@
             padding: 10px 24px 60px 24px;
         }
 
+        /* Sticky Floating "DM US" Button */
+        .floating-dm {
+            position: fixed;
+            right: 20px;
+            bottom: 30px;
+            background-color: #0F0F0F;
+            color: var(--gold-light);
+            border: 1px solid var(--gold-primary);
+            padding: 12px 22px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-dm:hover {
+            background-color: var(--gold-primary);
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Navigation Links & Buttons */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 35px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            display: inline-block;
+            background-color: var(--card-bg);
+            color: var(--gold-accent);
+            border: 1px solid var(--gold-primary);
+            padding: 10px 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(197, 160, 89, 0.08);
+        }
+
+        .action-btn:hover {
+            background-color: var(--gold-primary);
+            color: #FFFFFF;
+        }
+
         /* Section Titles & Subheadings */
         .category-subtitle {
             font-family: 'Cinzel', serif;
@@ -102,7 +161,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             padding: 40px 32px;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             box-shadow: 0 4px 20px rgba(197, 160, 89, 0.08);
             position: relative;
         }
@@ -263,6 +322,16 @@
             text-transform: uppercase;
         }
 
+        footer a {
+            color: var(--gold-accent);
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         @media (max-width: 600px) {
             .container {
                 padding: 10px 16px 40px 16px;
@@ -274,10 +343,21 @@
                 padding: 6px 12px;
                 font-size: 0.75rem;
             }
+            .floating-dm {
+                right: 15px;
+                bottom: 20px;
+                padding: 10px 18px;
+                font-size: 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- Sticky Floating "DM US" Button -->
+    <a href="#contact" class="floating-dm">
+        <span>✦</span> DM US
+    </a>
 
     <div class="top-banner">
         2026 Sacred Healing | Magical Arts
@@ -288,6 +368,16 @@
     </div>
 
     <div class="container">
+
+        <!-- Store & Youtube Action Buttons -->
+        <div class="cta-container">
+            <a href="https://project-ankh.github.io/ManifestationIndia/" target="_blank" class="action-btn">
+                Visit Our Store 🛍️
+            </a>
+            <a href="https://www.youtube.com/@ManifestationIndia" target="_blank" class="action-btn">
+                YouTube Channel ▶
+            </a>
+        </div>
 
         <!-- What is Spellwork Card -->
         <div class="about-box">
@@ -391,7 +481,11 @@
     </div>
 
     <footer>
-        ✦ Sacred Arts & Healing Services ✦
+        <p>✦ Sacred Arts & Healing Services ✦</p>
+        <p style="margin-top: 8px;">
+            <a href="https://project-ankh.github.io/ManifestationIndia/" target="_blank">Official Store</a> | 
+            <a href="https://www.youtube.com/@ManifestationIndia" target="_blank">YouTube</a>
+        </p>
     </footer>
 
     <script>
